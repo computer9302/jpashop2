@@ -2,7 +2,6 @@ package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.LifecycleState;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,7 @@ import javax.persistence.EntityManager;
 @RequiredArgsConstructor
 public class OrderRepository {
 
-    private EntityManager em;
+    private final EntityManager em;
 
     public void save(Order order){
         em.persist(order);
@@ -21,7 +20,10 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
+    /*
     public List<Order> findAll(OrderSearch orderSearch){
 
     }
+    */
+
 }

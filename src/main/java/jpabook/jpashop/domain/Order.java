@@ -60,7 +60,7 @@ public class Order {
             order.addOrderItem(orderItem);
 
         }
-        order.setStatus(OrderStatus.ORDEER);
+        order.setStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
         return order;
     }
