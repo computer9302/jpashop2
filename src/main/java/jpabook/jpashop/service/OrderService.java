@@ -8,11 +8,17 @@ import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
+//(readOnly = true) 이거 제거하니까 됨.
+//가설 : transactional이 원자성을 가지고 있음. 하나가 에러가 되면 모든 것을 롤백하는 것.
+// 그거랑 관련되서 다 돌려버려서 order메소드가 동작해도 save가 안되는거 같음.
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class OrderService {
@@ -23,6 +29,7 @@ public class OrderService {
     /*
     *
     * */
+    @Transactional
     public Long order(Long memberId, Long itemId, int count){
         //엔티티 조회
         Member member = memberRepository.findOne(memberId);
@@ -56,9 +63,9 @@ public class OrderService {
     }
 
     //검색
-    /*
+
     public List<Order> findOrders(OrderSearch orderSearch){
-        return orderRepository.findAll(orderSearch)
+        return orderRepository.findAllByString(orderSearch);
     }
-     */
+
 }
