@@ -31,6 +31,8 @@ public class MemberApiController {
         Long id = memberService.join(member);
         return new CreateMemberResponse(id);
     }
+
+    //DTO : data transport object
     @Data
     static class CreateMemberRequest{
         private String name;
